@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
   // be sure to include its associated products
   try {
     const categoryData = await Category.findAll({
-      include: [{ model: Product }, { model: ProductTag }],
+      include: [{ model: Category }, { model: Product }],
     });
     res.status(200).json(categoryData);
   } catch (err) {
@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Products
   try {
     const categoryData = await Category.findByPk(req.params.id, {
-      include: [{ model: Product}, { model: ProductTag}],
+      include: [{ model: Category }, { model: Product }],
     });
 
     if (!categoryData) {
@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
   // create a new category
   try {
     const categoryLocation = await Category.create({
-      product_id: requestAnimationFrame.body.product_id,
+      category_name: req.body.category_name,
     });
     res.status(200).json(categoryLocation);
   } catch (err) {
@@ -49,22 +49,22 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   // update a category by its `id` value
-  Category.update(
-    {
-      category_name: req.body.category_name,
-    },
-    {
+  try {
+    const updateCategory = await Category.update(req.body, {
       where: {
-        category_id: req.params.category_id,
+        category_id: req.params.id,
       },
+    });
+    if (!updateCategory[0]) {
+      res.status(404).json({ message: 'No category matches the current ID'});
+      return;
     }
-  )
-    .then((updatedCategory) => {
-      res.json(updatedCategory);
-    })
-    .catch((err) => res.json(err));
+    res.status(200).json(updateCategory)
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.delete('/:id', async (req, res) => {
