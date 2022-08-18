@@ -49,6 +49,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+/* This is updating a category by its id value. */
 router.put('/:id', async (req, res) => {
   // update a category by its `id` value
   try {
@@ -67,6 +68,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+/* This is deleting a category by its id value. */
 router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
   try {
@@ -77,7 +79,7 @@ router.delete('/:id', async (req, res) => {
     });
 
     if (!categoryData) {
-      res.status(404).json({ message: 'No category found with that id'});
+      res.status(404).json({ message: 'No category found with that ID'});
       return;
     }
     res.status(200).json(categoryData);
