@@ -3,6 +3,8 @@
 ## Description
 For this application we had to build out the backend for an application and create the Models along with the routes! Models gives it a template to go along with and creating the routes shows where to send it too. The user can use Insomnia to send various HTTP requests to the server and do tests on MySQL database to be sure each one is functioning and not getting any errors.
 
+<img src="Assets/13-orm-homework-demo-01.gif" alt="Live demonstration of app">
+
 ## Table of Contents
 * [Installation](#installation)
 * [Licenses](#licenses)
@@ -34,6 +36,9 @@ This project falls under the following license(s):
 
 ## Deployed
 Deployed URL: [Deployed-App](https://github.com/Cesar-Infante/E-Commerce-Backend)
+
+## Live Video Demonstration
+Live URL: [Live-Video](https://drive.google.com/file/d/10x0Z4jeBUMjyDE3DAUHybT4Eno_wnvZh/view)
 
 ## Questions
 If you have any questions, or want to connect please contact me below: 
