@@ -8,6 +8,7 @@ const sequelize = require("../config/connection");
 class Product extends Model { }
 
 // set up fields and rules for Product model
+/* Defining the columns of the table. */
 Product.init(
   {
     // define columns

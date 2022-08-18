@@ -4,6 +4,8 @@ const sequelize = require("../config/connection");
 
 class ProductTag extends Model { }
 
+/* This is creating a new model called ProductTag. It is also defining the columns that will be in the
+table. */
 ProductTag.init(
   {
     // define columns

@@ -5,6 +5,8 @@ const { Category, Product, ProductTag } = require('../../models');
 
 // The `/api/categories` endpoint
 
+/* This is a get request to the api/categories route. It is finding all categories and including the
+associated products. */
 router.get('/', async (req, res) => {
   //find all categories
   // be sure to include its associated products
@@ -13,6 +15,9 @@ router.get('/', async (req, res) => {
       include: [{ model: Product }],
     });
 
+    /* This is checking to see if the categoryData variable is empty. If it is, it is sending a 404
+    status code and a message to the user. If it is not empty, it is sending a 200 status code and the
+    categoryData variable. */
     if (!categoryData) {
       res.status(404).json({ message: "Category not found!" })
       return;
@@ -24,6 +29,8 @@ router.get('/', async (req, res) => {
   }
 });
 
+/* This is a get request to the api/categories/:id route. It is finding one category by its id value
+and including the associated products. */
 router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
@@ -32,6 +39,9 @@ router.get('/:id', async (req, res) => {
       include: [{ model: Product }],
     });
 
+    /* This is checking to see if the categoryData variable is empty. If it is, it is sending a 404
+    status code and a message to the user. If it is not empty, it is sending a 200 status code and the
+    categoryData variable. */
     if (!categoryData) {
       res.status(404).json({ message: 'No data found with that id' });
       return;
@@ -43,6 +53,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+/* This is creating a new category. */
 router.post('/', async (req, res) => {
   // create a new category
   try {
@@ -62,10 +73,15 @@ router.put('/:id', async (req, res) => {
         id: req.params.id,
       },
     });
+
+    /* This is checking to see if the updateCategory variable is empty. If it is, it is sending a 404
+    status code and a message to the user. If it is not empty, it is sending a 200 status code and the
+    updateCategory variable. */
     if (!updateCategory[0]) {
       res.status(404).json({ message: 'No category matches the current ID' });
       return;
     }
+
     res.status(200).json(updateCategory)
   } catch (err) {
     res.status(500).json(err);
@@ -82,6 +98,9 @@ router.delete('/:id', async (req, res) => {
       },
     });
 
+    /* This is checking to see if the categoryDelete variable is empty. If it is, it is sending a 404
+    status code and a message to the user. If it is not empty, it is sending a 200 status code and the
+    categoryDelete variable. */
     if (!categoryDelete) {
       res.status(404).json({ message: 'No category found with that ID' });
       return;

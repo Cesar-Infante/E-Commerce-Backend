@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
       include: [{ model: Category }, { model: Tag }],
     });
 
+    /* This is a check to see if the productData is empty. If it is, it will return a 404 error. */
     if (!productData) {
       res.status(404).json({ message: "Category not found!" })
       return;
@@ -24,6 +25,8 @@ router.get('/', async (req, res) => {
 });
 
 // get one product
+/* This is a get request that is looking for a single product by its id. It is also including the
+associated Category and Tag data. */
 router.get('/:id', async (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
@@ -76,7 +79,7 @@ router.post('/', (req, res) => {
 });
 
 // update product
-router.put('/:id', async (req, res) => {
+router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
     where: {
@@ -117,6 +120,8 @@ router.put('/:id', async (req, res) => {
     });
 });
 
+/* This is a delete request that is looking for a single product by its id. It is also including the
+associated Category and Tag data. */
 router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
   try {
@@ -126,6 +131,7 @@ router.delete('/:id', async (req, res) => {
       },
     });
 
+    /* This is a check to see if the productDelete is empty. If it is, it will return a 404 error. */
     if (!productDelete) {
       res.status(404).json({ message: 'No category found with that ID' });
       return;
